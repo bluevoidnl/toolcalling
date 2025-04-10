@@ -14,11 +14,12 @@ class OpenAiClient() {
 
     private val apiKey = "private"
 
-
     private val config = OpenAIConfig(
         token = apiKey,
         timeout = Timeout(socket = 60.seconds),
     )
+
+    private val chatNsConfig = ChatNsApiHost.chatNsConfig
 
     private val openAI = OpenAI(config)
 
@@ -26,7 +27,7 @@ class OpenAiClient() {
         val start = System.currentTimeMillis()
         val chatCompletionRequest = chatCompletionRequest {
             //model = ModelId("gpt-4o-mini") // gpt-4o-mini should be more than enough for our simple questions, cheaper and faster
-             model = ModelId("gpt-4o")
+            model = ModelId("gpt-4o")
             messages = listOf(
                 ChatMessage(
                     role = ChatRole.System,
